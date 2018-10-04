@@ -28,45 +28,18 @@ const data = [
   }
 ];
 
-class Card extends React.Component {   
-    render() {
-        return (
-            <div> 
-            { this.props.value }
-            </div>
-        );
-    }
-}
 
-class CardContainer extends React.Component {   
-    render() {
-        var arr=["one", "two", "three", "four"];
-        var elements=[];
-        for(var i=0;i<arr.length;i++){
-            elements.push(<Card value={ arr[i] } />);
-        }
-        return (
-            <div> 
-            {elements}
-            </div>
-        );
-    }
-}
-    
-    
 const TesterGo = () => <h2>TesterGo</h2>;
 
 const dataComponentNames =[];
 const components = [];
 
 for(var i=0; i < data.length; i++) {
-components[0] = () => <h2>1TesterGo + {i}</h2>;
-components[1] = () => <h2>2TesterGo</h2>;
-components[2] = () => <h2>3TesterGo</h2>;
-components[3] = () => <h2>4TesterGo</h2>;
+components[i] = () => '<h2>' + i +'TesterGo</h2>';
+console.log(i);
 
 }
-            
+
 const listItems = data.map(d => < li > <Link to = {d.url} > {d.name} < /Link></li > );
 
 const routes = [];
@@ -74,7 +47,7 @@ const routes = [];
 for(var i=0; i < data.length; i++) {
     var jsonVariable = {};
   jsonVariable.path = data[i].url;
-    jsonVariable.component = components[i] = () => <h2>{components[i]}TesterGo</h2>;;
+    jsonVariable.component = components[i];
   routes.push(jsonVariable); 
 }
 routes.push( {
